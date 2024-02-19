@@ -1,21 +1,72 @@
 package com.pruebatecnica.identity.core;
 
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "identity")
 public class IdentityDocument {
 
 	@Id
-	public int number;
+	private String id;
 
-	public ZonedDateTime experiDate;
+	private String number;
 
-	public ZonedDateTime emmisionDate;
+	private LocalDate expiryDate;
 
-	@Field("documentType")
-	public DocumentType documentType;
+	private ZonedDateTime emissionDate;
+
+	private DocumentType documentType;
+
+	protected IdentityDocument() {
+
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public LocalDate getExpiryDate() {
+		return expiryDate;
+	}
+
+	public ZonedDateTime getEmissionDate() {
+		return emissionDate;
+	}
+
+	public DocumentType getDocumentType() {
+		return documentType;
+	}
+
+	public IdentityDocument setId(String id) {
+		this.id = id;
+		return this;
+	}
+
+	public IdentityDocument setNumber(String number) {
+		this.number = number;
+		return this;
+	}
+
+	public IdentityDocument setExpiryDate(LocalDate expiryDate) {
+		this.expiryDate = expiryDate;
+		return this;
+	}
+
+	public IdentityDocument setEmissionDate(ZonedDateTime emissionDate) {
+		this.emissionDate = emissionDate;
+		return this;
+	}
+
+	public IdentityDocument setDocumentType(DocumentType documentType) {
+		this.documentType = documentType;
+		return this;
+	}
+
 }
