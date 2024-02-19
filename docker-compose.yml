@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  identity_db:
+    container_name: identity_db
+    image: mongo:7.0
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 'mongoadmin'
+      MONGO_INITDB_ROOT_PASSWORD: 'identity123'
+      MONGO_INITDB_DATABASE: 'identity'
+      ports: 27017:27017
+
+  identity_app:
+    container_name: identity_app
+    image: identity-api.jar
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - identity_db

@@ -37,3 +37,9 @@ tasks.named('bootBuildImage') {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+
+bootJar {
+	archiveFileName ='identity-api.jar'
+	launchScript()
+}
