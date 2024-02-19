@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,6 +38,22 @@ public class RestErrorController {
 	@Autowired
 	public RestErrorController(MessageSource messageSource) {
 		this.messageSource = messageSource;
+	}
+
+	@ResponseBody
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(MissingServletRequestParameterException.class)
+	public JsonResponse processMissingServletRequestParameterException(MissingServletRequestParameterException ex) {
+
+		String msg = "Faltan paramentros para procesar la solicitud. " + ex.getLocalizedMessage();
+		log.error("{} {}", msg, ex.getMessage(), ex);
+
+		// @formatter:off
+		return new JsonResponse.Builder(HttpStatus.BAD_REQUEST)
+				.withMessage(msg)
+				.withCode(AppStatusCode.APP_ERROR)
+				.build(); 
+		// @formatter:on
 	}
 
 	@ResponseBody

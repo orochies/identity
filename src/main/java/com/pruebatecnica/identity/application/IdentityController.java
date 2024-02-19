@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pruebatecnica.identity.config.AppConfig;
@@ -45,7 +46,7 @@ public class IdentityController {
 	}
 
 	@DeleteMapping()
-	public String delete(String id) {
+	public String delete(@RequestParam(name = "id", required = true) String id) {
 
 		return this.service.delete(id);
 	}

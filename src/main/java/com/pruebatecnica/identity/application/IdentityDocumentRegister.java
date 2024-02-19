@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.pruebatecnica.identity.config.AppException;
 import com.pruebatecnica.identity.core.IdentityDocument;
 import com.pruebatecnica.identity.core.IdentityDocumentDto;
 import com.pruebatecnica.identity.core.IdentityDocumentRepository;
@@ -31,6 +32,8 @@ public class IdentityDocumentRegister implements IdentityDocumentService {
 		log.debug("--- Create new document {}", dto);
 
 		IdentityDocument doc = dto.toDocument();
+
+		doc.setId(null); // force always create new document
 
 		doc = repo.save(doc);
 
@@ -58,6 +61,12 @@ public class IdentityDocumentRegister implements IdentityDocumentService {
 
 		IdentityDocument doc = dto.toDocument();
 
+		// verify id is never null or blank to update document
+		if (doc.getId() == null || doc.getId().isBlank()) {
+			throw new AppException(
+					"[Actualizar documento] El campo id no esta definido o es null y no se puede continuar.");
+		}
+
 		doc = repo.save(doc);
 
 		return new IdentityDocumentDto(doc);
@@ -67,6 +76,11 @@ public class IdentityDocumentRegister implements IdentityDocumentService {
 	public String delete(String id) {
 
 		log.debug("--- Delete document with id {}", id);
+
+		// verify id is never null or blank to update document
+		if (id == null || id.isBlank()) {
+			throw new AppException("[Borrar documento] El campo id no es válido y no se puede continuar.");
+		}
 
 		repo.deleteById(id);
 
