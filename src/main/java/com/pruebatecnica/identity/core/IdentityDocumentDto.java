@@ -41,6 +41,7 @@ public class IdentityDocumentDto {
 	public IdentityDocumentDto fromDocument(IdentityDocument doc) {
 		Objects.requireNonNull(doc, "El parametro doc es null.");
 
+		this.id = doc.getId();
 		this.number = doc.getNumber();
 		this.expiryDate = doc.getExpiryDate();
 		this.emissionDate = doc.getEmissionDate();
