@@ -2,7 +2,79 @@
 
 Prueba técnica con Spring Security  JWT + MongoDB.
 
-## Despliegue o Instalación
+## Ejecutar aplicación
+
+clonar el repositorio github de la aplicación con el siguiente comando
+
+> git clone git@github.com:orochies/identity.git
+
+Ejecutar el siguiente comando de consola de windows para empaqueter la aplicacion en un archivo Jar
+
+> gradlew bootJar
+
+Compilar con docker composer para crear las imagenes y ejecutar los contenedores
+
+> docker-compose up
+
+### Probar los endpoints
+
+Ejecutar una solicitud http con postman a la url para obtener un token de acceso autorizado:
+
+``` json
+POST http://localhost:8080/api/login
+
+{
+    "username":"user",
+    "password": "user"
+}
+```
+
+Deberá obtener el token de acceso para hacer solicitudes a las siguientes endpoints:
+
+Crear un identity document
+
+```json
+POST http://localhost:8080/api/identities
+
+{
+    "number": "112380340",
+    "expiryDate": "09/24",
+    "emissionDate": "2022-05-17T00:00:00.000Z",
+    "documentType": {
+        "code": "CI",
+        "name": "Cédula de identidad."
+    }
+}
+```
+
+Obtener una lista de identity document
+
+```json
+GET http://localhost:8080/api/identities
+```
+
+Actualizar un identity document
+
+```json
+PUT http://localhost:8080/api/identities
+
+{
+    "id": "[id obtenido de un documento existente]", 
+    "number": "2183176540920",
+    "expiryDate": "09/24",
+    "emissionDate": "2022-05-17T00:00:00Z",
+    "documentType": {
+        "code": "DPI",
+        "name": "Documento Personal de Identificación."
+    }
+}
+```
+
+Borrar un identity document
+
+```json
+PUT http://localhost:8080/api/identities?id=[id obtenido de un documento existente]
+```
 
 ## Construído con
 
