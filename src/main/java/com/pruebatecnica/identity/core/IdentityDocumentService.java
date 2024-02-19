@@ -11,6 +11,6 @@ public interface IdentityDocumentService {
 
 	public IdentityDocumentDto update(IdentityDocumentDto dto);
 
-	public int delete(int id);
+	public String delete(String id);
 
 }
