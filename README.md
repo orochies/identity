@@ -20,6 +20,10 @@ Usamos [SemVer](https://semver.org/lang/es/) para versionar.
 
 Usamos [Mantenga un changelog](https://keepachangelog.com/en/1.0.0/)
 
+## Conventional Commits
+
+Usamos [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#specification)
+
 ## Autores
 
 - **Alvaro De León** - *Developer*
