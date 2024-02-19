@@ -28,7 +28,7 @@ public class IdentityDocumentDto {
 	private ZonedDateTime emissionDate;
 
 	@Valid
-	private DocumentType documentType;
+	private DocumentTypeDto documentType;
 
 	public IdentityDocumentDto() {
 
@@ -45,6 +45,7 @@ public class IdentityDocumentDto {
 		this.number = doc.getNumber();
 		this.expiryDate = doc.getExpiryDate();
 		this.emissionDate = doc.getEmissionDate();
+		this.documentType = new DocumentTypeDto(doc.getDocumentType());
 
 		return this;
 	}
@@ -56,7 +57,8 @@ public class IdentityDocumentDto {
 				.setId(id)
 				.setNumber(number)
 				.setExpiryDate(expiryDate)
-				.setEmissionDate(emissionDate);
+				.setEmissionDate(emissionDate)
+				.setDocumentType(documentType.toDocument());
 		// @formatter:on
 	}
 
@@ -64,40 +66,45 @@ public class IdentityDocumentDto {
 		return id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public String getNumber() {
 		return number;
-	}
-
-	public void setNumber(String number) {
-		this.number = number;
 	}
 
 	public LocalDate getExpiryDate() {
 		return expiryDate;
 	}
 
-	public void setExpiryDate(LocalDate expiryDate) {
-		this.expiryDate = expiryDate;
-	}
-
 	public ZonedDateTime getEmissionDate() {
 		return emissionDate;
 	}
 
-	public void setEmissionDate(ZonedDateTime emmisionDate) {
-		this.emissionDate = emmisionDate;
-	}
-
-	public DocumentType getDocumentType() {
+	public DocumentTypeDto getDocumentType() {
 		return documentType;
 	}
 
-	public void setDocumentType(DocumentType documentType) {
+	public IdentityDocumentDto setId(String id) {
+		this.id = id;
+		return this;
+	}
+
+	public IdentityDocumentDto setNumber(String number) {
+		this.number = number;
+		return this;
+	}
+
+	public IdentityDocumentDto setExpiryDate(LocalDate expiryDate) {
+		this.expiryDate = expiryDate;
+		return this;
+	}
+
+	public IdentityDocumentDto setEmissionDate(ZonedDateTime emissionDate) {
+		this.emissionDate = emissionDate;
+		return this;
+	}
+
+	public IdentityDocumentDto setDocumentType(DocumentTypeDto documentType) {
 		this.documentType = documentType;
+		return this;
 	}
 
 	@Override
