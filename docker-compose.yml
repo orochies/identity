@@ -1,8 +1,6 @@
 version: "3.9"
 
 services:
-<<<<<<< HEAD
-=======
   java_app:
     container_name: identity_app
     image: identity-api.jar
@@ -15,20 +13,6 @@ services:
       - DATABASE_PASSWORD=postgres
     depends_on:
       - identity_db
->>>>>>> c341f6bc58871a49308ae1857a54fbb7e9f9282b
-  identity_db:
-    container_name: identity_db
-    image: mongo:7.0
-    restart: always
-    ports:
-      - 27017:27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: 'mongoadmin'
-      MONGO_INITDB_ROOT_PASSWORD: 'identity123'
-      MONGO_INITDB_DATABASE: 'identity'
-      ports: 27017:27017
-<<<<<<< HEAD
-
   identity_app:
     container_name: identity_app
     image: identity-api.jar
@@ -37,5 +21,3 @@ services:
       - 8080:8080
     depends_on:
       - identity_db
-=======
->>>>>>> c341f6bc58871a49308ae1857a54fbb7e9f9282b
