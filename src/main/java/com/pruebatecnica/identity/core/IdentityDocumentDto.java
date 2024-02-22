@@ -19,7 +19,7 @@ public class IdentityDocumentDto {
 	@NotBlank(message = "El number es obligatorio.")
 	private String number;
 
-	@NotNull(message = "El experiDate es obligatorio.")
+	@NotNull(message = "El expiryDate es obligatorio.")
 	@JsonDeserialize(using = YearMonthDeserializer.class)
 	@JsonFormat(pattern = "MM/yy")
 	private LocalDate expiryDate;
