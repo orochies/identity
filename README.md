@@ -73,7 +73,7 @@ PUT http://localhost:8080/api/identities
 Borrar un identity document
 
 ```json
-PUT http://localhost:8080/api/identities?id=[id obtenido de un documento existente]
+DELETE http://localhost:8080/api/identities?id=[id obtenido de un documento existente]
 ```
 
 ## Construído con
